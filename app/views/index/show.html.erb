@@ -2,10 +2,77 @@
 <head>
   <meta charset="utf-8">
   <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.2/fetch.min.js'></script>
+
+  <style>
+    .chart {
+        width: 1000px;
+        height: 1000px;
+    }
+  </style>
 </head>
 <body>
-  <div>show here</div>
-  <canvas id="myChart" width="400" height="400"></canvas>
+  <div class="chart">
+      <canvas id="myChart"></canvas>
+  </div>
+  <script>
+  const query = 'https://api.keen.io/3.0/projects/589b3df48db53dfda8a86e59/queries/count?api_key=3EDC23F7F23923C3E67F91A5CD4CBE642BC69997A06DD1078064B1A6CE9F221CD3C988937F6B3A0A69FE84385F109FE1E3090B9BDBDED0049649415F9E8AA1F6DA052F0CE0539FBA059B4447C1734B22DA73EB22B2D98499A6A3C219FA054079&event_collection=video-interaction&interval=hourly&timezone=UTC&timeframe=this_1_days&filters=%5B%5D';
 
+  fetch('https://api.keen.io/3.0/projects/589b3df48db53dfda8a86e59/queries/count?api_key=3EDC23F7F23923C3E67F91A5CD4CBE642BC69997A06DD1078064B1A6CE9F221CD3C988937F6B3A0A69FE84385F109FE1E3090B9BDBDED0049649415F9E8AA1F6DA052F0CE0539FBA059B4447C1734B22DA73EB22B2D98499A6A3C219FA054079&event_collection=video-interaction&interval=hourly&timezone=UTC&timeframe=this_1_days&filters=%5B%5D')
+    .then((res) => {
+      // JSON.parse(res.body.readableStream)
+      return res.json();
+    })
+    .then(res => {
+      const chartData = {
+        type: 'line',
+        data: {
+          labels: [],
+          datasets: [{
+            label: 'Number of interactions',
+            data: [],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255,99,132,1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero:true
+              }
+            }]
+          }
+        }
+      }
+      const data = res.result;
+      console.log(data)
+      data.map(d => {
+        // console.log(chartData.data.datasets[0])
+        chartData.data.labels.push(d.timeframe.start.substring(11, 13)+'h')
+        chartData.data.datasets[0].data.push(d.value)
+        // console.log(d.value)
+      })
+      console.log(chartData)
+      const ctx = document.getElementById("myChart");
+      const myChart = new Chart(ctx, chartData);
+    })
+
+  </script>
 </body>
 </html>
