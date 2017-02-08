@@ -1065,3 +1065,19 @@ Processing by IndexController#show as HTML
 Completed 200 OK in 12ms (Views: 11.4ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/video/shhAji8XEvg" for 127.0.0.1 at 2017-02-08 16:36:23 -0500
+Processing by IndexController#video as HTML
+  Parameters: {"id"=>"shhAji8XEvg"}
+  Rendering index/video.html.erb within layouts/application
+  Rendered index/video.html.erb within layouts/application (44.5ms)
+Completed 200 OK in 450ms (Views: 432.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/video/5dsGWM5XGdg" for 127.0.0.1 at 2017-02-08 16:36:55 -0500
+Processing by IndexController#video as HTML
+  Parameters: {"id"=>"5dsGWM5XGdg"}
+  Rendering index/video.html.erb within layouts/application
+  Rendered index/video.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 14ms (Views: 12.9ms | ActiveRecord: 0.0ms)
+
+
