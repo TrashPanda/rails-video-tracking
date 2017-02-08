@@ -4,11 +4,23 @@
   <script src="http://d26b395fwzu5fz.cloudfront.net/keen-tracking-1.0.5.js"></script>
 </head>
 <body>
+
+  <style>
+    .chart {
+        width: 640px;
+    }
+  </style>
+
   <iframe id="youtube-iframe-player"
           width="640" height="360"
           src="https://www.youtube.com/embed/<%= @video_id %>?enablejsapi=1"
           frameborder="0"
           style="border: solid 4px #37474F"></iframe>
+
+  <br />
+  <center class="chart">
+    <%= link_to "Report", report_path(id: @video_id) %>
+  </center>
 
   <script>
   /*
