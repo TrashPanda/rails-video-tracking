@@ -6,8 +6,7 @@
 
   <style>
     .chart {
-        width: 1000px;
-        height: 1000px;
+        width: 640px;
     }
   </style>
 </head>
@@ -15,8 +14,13 @@
   <div class="chart">
       <canvas id="myChart"></canvas>
   </div>
+  
+  <br />
+  <center class="chart">
+    <%= link_to "Home", video_path(id: @video_id) %>
+  </center>
+
   <script>
-  const query = 'https://api.keen.io/3.0/projects/589b3df48db53dfda8a86e59/queries/count?api_key=3EDC23F7F23923C3E67F91A5CD4CBE642BC69997A06DD1078064B1A6CE9F221CD3C988937F6B3A0A69FE84385F109FE1E3090B9BDBDED0049649415F9E8AA1F6DA052F0CE0539FBA059B4447C1734B22DA73EB22B2D98499A6A3C219FA054079&event_collection=video-interaction&interval=hourly&timezone=UTC&timeframe=this_1_days&filters=%5B%5D';
 
   fetch('https://api.keen.io/3.0/projects/589b3df48db53dfda8a86e59/queries/count?api_key=3EDC23F7F23923C3E67F91A5CD4CBE642BC69997A06DD1078064B1A6CE9F221CD3C988937F6B3A0A69FE84385F109FE1E3090B9BDBDED0049649415F9E8AA1F6DA052F0CE0539FBA059B4447C1734B22DA73EB22B2D98499A6A3C219FA054079&event_collection=video-interaction&interval=hourly&timezone=UTC&timeframe=this_1_days&filters=%5B%5D')
     .then((res) => {
