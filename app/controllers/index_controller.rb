@@ -1,7 +1,8 @@
 class IndexController < ApplicationController
-  
+
   def show
-  end 
+    @video_id = params[:id]
+  end
 
   def video
 

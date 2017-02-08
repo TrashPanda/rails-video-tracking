@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   	root to: 'index#show'
 
 	get '/video/:id' => 'index#video'
+    get '/show/:id' => 'index#show'
 
 end
